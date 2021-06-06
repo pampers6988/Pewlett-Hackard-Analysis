@@ -38,3 +38,32 @@ from unique_titles;
 select title, count(title)as "Title Counts"
 from unique_titles
 group by title
+
+--retiring titles
+select title
+into retiring_titles
+from unique_titles
+WHERE birth_date BETWEEN '1952-01-01' AND '1955-12-31'
+
+-- create alias
+select count(title) as "Title Counts"
+from retiring_titles
+
+select title, count(title)as "Title Counts"
+from retiring_titles
+group by title
+order by "Title Counts" desc;
+
+
+select count(title) as "Title Counts"
+from retiring_titles
+
+select * from retiring_titles2
+
+select title, count(title)as "Title Counts"
+into retiring_titles2
+from retiring_titles
+group by title
+order by "Title Counts" desc;
+
+
