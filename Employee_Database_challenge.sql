@@ -67,21 +67,35 @@ group by title
 order by "Title Counts" desc;
 
 --mentorship eligibility
-SELECT e.emp_no,
+--first table
+select * from unique_titles_1
+select distinct on(emp_no)
+e.emp_no,
 e.first_name,
 e.last_name,
-e.birth_date,
-de.from_date,
-de.to_date,
-ti.title
-INTO mentorship_eligibility
-FROM employees as e
-inner JOIN dept_emp  de
-ON e.emp_no = de.emp_no
-inner join titles ti
-ON e.emp_no = ti.emp_no
-WHERE de.to_date = ('9999-01-01')
-order by e.emp_no
+ti.title,
+ti.from_date,
+ti.to_date,
+e.birth_date
+INTO unique_titles_1
+from employees as e
+JOIN titles as ti
+on (e.emp_no=ti.emp_no)
+
+--Joined first and created second
+select distinct on(emp_no) 
+ut.emp_no,
+ut.first_name,
+ut.last_name,
+ut.birth_date,
+ut.from_date,
+ut.to_date,
+ut.title
+INTO unique_titles_3
+from unique_titles_1 as ut
+WHERE (birth_date BETWEEN '1965-01-01' AND '1965-12-31')
+AND to_date = ('9999-01-01')
+order by emp_no ;
 
 
 
