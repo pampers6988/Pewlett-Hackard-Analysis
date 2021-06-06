@@ -1,4 +1,4 @@
-#retirement titles
+--retirement titles
 select
 e.emp_no, 
 e.first_name, 
@@ -13,7 +13,7 @@ on (e.emp_no=ti.emp_no)
 WHERE (e.birth_date BETWEEN '1952-01-01' AND '1955-12-31')
 order by e.emp_no ;
 
-#Unique titles
+--Unique titles
 select distinct on(e.emp_no)
 e.emp_no,
 e.first_name,
@@ -26,3 +26,15 @@ INTO unique_titles
 from employees as e
 JOIN titles as ti
 on (e.emp_no=ti.emp_no)
+
+
+--Retirement titles
+select * from unique_titles
+select count(title) from unique_titles
+-- create alias
+select count(title) as "Title Counts"
+from unique_titles;
+--- Group By title count
+select title, count(title)as "Title Counts"
+from unique_titles
+group by title
