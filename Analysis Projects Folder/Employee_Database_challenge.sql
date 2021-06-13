@@ -60,3 +60,14 @@ SELECT COUNT(title), title
 from mentorship_eligibility
 group by title
 order by count desc;
+
+
+SELECT COUNT(title), title 
+from mentorship_eligibility
+group by title
+order by count desc;
+
+SELECT COUNT(title), title 
+from retiring_titles
+group by title
+order by count desc;
