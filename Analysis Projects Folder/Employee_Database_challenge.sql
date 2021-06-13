@@ -71,3 +71,33 @@ SELECT COUNT(title), title
 from retiring_titles
 group by title
 order by count desc;
+
+--- extra tables for analysis
+select
+rt.emp_no,
+rt.title,
+rt.to_date,
+s.salary,
+e.birth_date
+into retirement_title_salaries
+from retirement_titles  as rt
+inner join salaries as s
+on (rt.emp_no=s.emp_no)
+inner join employees as e
+on (rt.emp_no=e.emp_no)
+WHERE (e.birth_date BETWEEN '1952-01-01' AND '1955-12-31')
+AND (me.to_date = '9999-01-01')
+
+select
+me.emp_no,
+me.title,
+me.to_date,
+s.salary,
+me.birth_date
+into mentorship_eligibility_salaries
+from mentorship_eligibility  as me
+inner join salaries as s
+on (me.emp_no=s.emp_no)
+WHERE (me.birth_date BETWEEN '1965-01-01' AND '1965-12-31')
+group by me.emp_no, me.title,me.to_date,me.birth_date,s.salary 
+order by title, salary desc;
