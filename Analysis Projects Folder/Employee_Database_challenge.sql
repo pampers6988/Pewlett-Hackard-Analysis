@@ -54,3 +54,9 @@ order by e.emp_no ;
 
 drop table mentorship_eligibility
 select * from mentorship_eligibility
+
+
+SELECT COUNT(title), title 
+from mentorship_eligibility
+group by title
+order by count desc;
