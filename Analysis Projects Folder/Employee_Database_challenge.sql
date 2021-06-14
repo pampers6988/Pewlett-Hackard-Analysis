@@ -101,3 +101,19 @@ on (me.emp_no=s.emp_no)
 WHERE (me.birth_date BETWEEN '1965-01-01' AND '1965-12-31')
 group by me.emp_no, me.title,me.to_date,me.birth_date,s.salary 
 order by title, salary desc;
+
+
+-- No of emp eligible to retire with title 
+select 
+e.emp_no,
+e.birth_date,
+e.first_name,
+e.last_name,
+c.to_date,
+t.title
+from employees as e
+inner join current_emp as c
+on (e.emp_no=c.emp_no)
+inner join unique_titles as t
+on (e.emp_no=t.emp_no)
+order by emp_no ;
