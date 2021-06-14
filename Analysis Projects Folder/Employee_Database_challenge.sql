@@ -133,3 +133,15 @@ on (e.emp_no=c.emp_no)
 inner join unique_titles as t
 on (e.emp_no=t.emp_no)
 order by emp_no ;
+
+
+--current_employee_title
+select
+e.emp_no,
+e.to_date,
+t.title
+INTO current_employee_title
+from current_emp as e
+inner join unique_titles as t
+on (e.emp_no=t.emp_no)
+order by t.title
