@@ -117,3 +117,19 @@ on (e.emp_no=c.emp_no)
 inner join unique_titles as t
 on (e.emp_no=t.emp_no)
 order by emp_no ;
+
+
+select
+e.emp_no,
+e.birth_date,
+e.first_name,
+e.last_name,
+c.to_date,
+t.title
+INTO emp_ret_eligible
+from employees as e
+inner join current_emp as c
+on (e.emp_no=c.emp_no)
+inner join unique_titles as t
+on (e.emp_no=t.emp_no)
+order by emp_no ;
